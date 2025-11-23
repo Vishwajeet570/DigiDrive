@@ -1,17 +1,26 @@
 server:
-  port: 9003
+  port: 9001
 
 spring:
   application:
     name: document-service
-  data:
-    mongodb:
-      uri: mongodb://host.docker.internal:27017/digidrive
+
+  # PostgreSQL for users, vehicles, violations
+  datasource:
+    url: jdbc:postgresql://localhost:5434/digidrive
+    username: postgres
+    password: postgres
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
 
+  # MongoDB for documents
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/digidrive_docs
+
+# Eureka client registration
 eureka:
   client:
     service-url:

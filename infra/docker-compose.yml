@@ -1,39 +1,52 @@
 services:
-  postgres-auth:
+  
+  digidrive-postgres-doc:
     image: postgres:15
-    container_name: postgres-auth
+    container_name: digidrive-postgres-doc
+    restart: always
+    ports:
+      - "5434:5432"
     environment:
-      POSTGRES_DB: secure_road_auth
+      POSTGRES_DB: digidrive
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    ports:
-      - "5432:5432"
     volumes:
-      - pgdata_auth:/var/lib/postgresql/data
-    networks:
-      - diginet
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      retries: 5
+      - digidrive_data:/var/lib/postgresql/data
+  # postgres-auth:
+  #   image: postgres:15
+  #   container_name: postgres-auth
+  #   environment:
+  #     POSTGRES_DB: secure_road_auth
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - pgdata_auth:/var/lib/postgresql/data
+  #   networks:
+  #     - diginet
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 5s
+  #     retries: 5
 
-  postgres-main:
-    image: postgres:15
-    container_name: postgres-main
-    environment:
-      POSTGRES_DB: digi_drive
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - "5433:5432"
-    volumes:
-      - pgdata_main:/var/lib/postgresql/data
-    networks:
-      - diginet
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      retries: 5
+  # postgres-main:
+    # image: postgres:15
+    # container_name: postgres-main
+    # environment:
+    #   POSTGRES_DB: digi_drive
+    #   POSTGRES_USER: postgres
+    #   POSTGRES_PASSWORD: postgres
+    # ports:
+    #   - "5433:5432"
+    # volumes:
+    #   - pgdata_main:/var/lib/postgresql/data
+    # networks:
+    #   - diginet
+    # healthcheck:
+    #   test: ["CMD-SHELL", "pg_isready -U postgres"]
+    #   interval: 5s
+    #   retries: 5
 
   mongo:
     image: mongo:6
@@ -85,7 +98,9 @@ volumes:
   pgdata_auth:
   pgdata_main:
   mongo_data:
+  digidrive_data:
 
 networks:
   diginet:
     driver: bridge
+
