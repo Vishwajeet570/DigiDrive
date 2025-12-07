@@ -88,6 +88,11 @@ public class SecurityConfig {
                 .requestMatchers("/documents/*/status").hasAuthority("ROLE_ADMIN")
                 .requestMatchers("/qr/generate/**").hasAuthority("ROLE_USER")
                 .requestMatchers("/qr/scan").hasAuthority("ROLE_POLICE")
+                .requestMatchers("/violations/create").hasAuthority("ROLE_POLICE")
+                .requestMatchers("/violations/all").hasAuthority("ROLE_ADMIN")
+                .requestMatchers("/violations/my").hasAuthority("ROLE_USER")
+                .requestMatchers("/violations/pay/**").hasAuthority("ROLE_USER")
+
                 // Everything else requires authentication
                 .anyRequest().authenticated()
             )
