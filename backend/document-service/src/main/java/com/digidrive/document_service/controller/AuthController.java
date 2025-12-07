@@ -5,6 +5,7 @@ import com.digidrive.document_service.service.AuthService;
 
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {

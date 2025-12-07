@@ -26,7 +26,6 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/auth/**",
                                 "/test/public",
-                                "/test/**",
                                 "/actuator/**"
                         ).permitAll()
                         .anyRequest().authenticated()
