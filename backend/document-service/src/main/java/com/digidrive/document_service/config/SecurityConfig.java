@@ -78,6 +78,10 @@ public class SecurityConfig {
                 .requestMatchers("/test/admin").hasAuthority("ROLE_ADMIN")
                 .requestMatchers("/test/police").hasAuthority("ROLE_POLICE")
                 .requestMatchers("/test/user").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .requestMatchers("/vehicle/register").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .requestMatchers("/vehicle/my").hasAuthority("ROLE_USER")
+                .requestMatchers("/vehicle/all").hasAuthority("ROLE_ADMIN")
+                .requestMatchers("/vehicle/*").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN", "ROLE_POLICE")
 
                 // Everything else requires authentication
                 .anyRequest().authenticated()
