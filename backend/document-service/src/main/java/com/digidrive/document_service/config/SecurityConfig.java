@@ -82,7 +82,10 @@ public class SecurityConfig {
                 .requestMatchers("/vehicle/my").hasAuthority("ROLE_USER")
                 .requestMatchers("/vehicle/all").hasAuthority("ROLE_ADMIN")
                 .requestMatchers("/vehicle/*").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN", "ROLE_POLICE")
-
+                .requestMatchers("/documents/upload/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
+                .requestMatchers("/documents/vehicle/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN","ROLE_POLICE")
+                .requestMatchers("/documents/*/download").hasAnyAuthority("ROLE_USER","ROLE_ADMIN","ROLE_POLICE")
+                .requestMatchers("/documents/*/status").hasAuthority("ROLE_ADMIN")
                 // Everything else requires authentication
                 .anyRequest().authenticated()
             )
