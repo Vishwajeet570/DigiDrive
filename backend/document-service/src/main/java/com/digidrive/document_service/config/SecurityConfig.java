@@ -86,6 +86,8 @@ public class SecurityConfig {
                 .requestMatchers("/documents/vehicle/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN","ROLE_POLICE")
                 .requestMatchers("/documents/*/download").hasAnyAuthority("ROLE_USER","ROLE_ADMIN","ROLE_POLICE")
                 .requestMatchers("/documents/*/status").hasAuthority("ROLE_ADMIN")
+                .requestMatchers("/qr/generate/**").hasAuthority("ROLE_USER")
+                .requestMatchers("/qr/scan").hasAuthority("ROLE_POLICE")
                 // Everything else requires authentication
                 .anyRequest().authenticated()
             )
